@@ -1,0 +1,134 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+</head>
+<body>
+
+	<h1>API Calls</h1>
+
+	<form>
+		<input type="text" id="url" placeholder="url">
+		<select id="method">
+			<option value="GET">GET</option>
+			<option value="POST">POST</option>
+			<option value="PATCH">PATCH</option>
+			<option value="PUT">PUT</option>
+			<option value="DELETE">DELETE</option>
+		</select>
+		<h3>Headers</h3>
+		<!-- headers inputted by user-->
+		<div id="headers"></div>
+
+		<a id="add_header">Add Header</a>
+
+		<h3>Parameters</h3>
+		<!-- parameters inputted by user -->
+		<div id="parameters"></div>
+
+		<a id="add_param">Add Parameter</a>
+		<a id="submit">Submit Query</a>
+	</form>
+	<p><a id="get_params">Get params</a></p>
+	<div id="results"></div>
+
+	<script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
+	<script>
+		var params = {}
+		var headers = {}
+
+		$('#submit').click(function(){
+			var url = $('#url').val()
+			var method = $('#method').val()
+			var item = {
+				url: url,
+				data: params,
+				headers: headers
+			}
+			if(method === 'GET'){
+				$.get(item).done(function(html){
+					console.dir(html)
+					$('#results').empty()
+					$('#results').append(html)
+				})
+			} else if(method === 'POST'){
+				$.post(item).done(function(html){
+					console.dir(html)
+					$('#results').empty()
+					$('#results').append(html)
+				})
+			} else if(method === 'PUT'){
+				$.put(item).done(function(html){
+					console.dir(html)
+					$('#results').empty()
+					$('#results').append(html)
+				})
+			} else if(method === 'DELETE'){
+				$.delete(item).done(function(html){
+					console.dir(html)
+					$('#results').empty()
+					$('#results').append(html)
+				})
+			} else if(method === 'PATCH'){
+				$.patch(item).done(function(html){
+					console.dir(html)
+					$('#results').empty()
+					$('#results').append(html)
+				})
+			}
+		})
+
+		$('#add_param').click(function(){
+			$('#parameters').append('<div class="parameter"><input type="text" class="parameter_name" placeholder="parameter name"><input type="text" class="parameter_value" placeholder="parameter value"><i class="fa fa-close"></i><br/></div>')
+
+			$('i').on("click", function(){
+				$(this).parent().remove()
+			})
+		})
+		$('#get_params').click(function(){
+			params = {}
+			$('.parameter').each(function(){
+				var parameter_name = $(this).children()[0].value
+				var parameter_value = $(this).children()[1].value
+				params[parameter_name] = parameter_value
+			})
+			$('body').append(params)
+		})
+
+		$('#add_header').click(function(){
+			$('#headers').append('<div class="header"><input type="text" class="header_name" placeholder="header name"><input type="text" class="header_value" placeholder="header value"><i class="fa fa-close"></i><br/></div>')
+			$('i').on("click", function(){
+				$(this).parent().remove()
+			})
+		})
+		$('#get_headers').click(function(){
+			headers = {}
+			$('.header').each(function(){
+				var header_name = $(this).children()[0].value
+				var header_value = $(this).children()[1].value
+				header[header_name] = header_value
+			})
+		})
+
+		// define custom methods
+		jQuery.each( [ "put", "delete", "patch" ], function( i, method ) {
+		  jQuery[ method ] = function( url, data, callback, type ) {
+		    if ( jQuery.isFunction( data ) ) {
+		      type = type || callback;
+		      callback = data;
+		      data = undefined;
+		    }
+
+		    return jQuery.ajax({
+		      url: url,
+		      type: method,
+		      dataType: type,
+		      data: data,
+		      success: callback
+		    });
+		  };
+		});
+	</script>
+</body>
+</html>

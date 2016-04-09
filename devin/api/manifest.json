@@ -1,0 +1,15 @@
+{
+	"manifest": "1",
+	"client_id": "750761066",
+	"version": "1.0.0",
+	"elements":[{
+		"name": "API",
+		"path": "files",
+		"version": "1.0.0"
+	}],
+	"settings": {
+  	"config": {
+      "autopop": true
+		}
+	}
+}
