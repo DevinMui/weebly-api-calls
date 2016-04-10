@@ -100,9 +100,10 @@ function jsonParser(html, format){
 		html_code = html_code.replace("undefined", "")
 		$('#api_data').append("<p>" + html_code + "</p>") // "John j@j.com <br> 16"
 		//$('#results').append("<p>" + html_code.replace("undefined", "") + "</p>") // i feel sorry for people named undefined now
+		//unshrekt ex de nice troll plox
 	} else {
 		for(x=0;x<html.length;x++){
-			var html_code
+			var html_code=""
 			for (i=0; i<format.length; i++){
 				if(format[i] === "<br>"){
 					html_code += "<br>"
