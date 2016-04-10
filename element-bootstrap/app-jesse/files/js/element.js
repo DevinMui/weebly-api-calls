@@ -13,12 +13,21 @@
 		initialize: function(){
 			url = this.settings.get("url")
 			method = this.settings.get("method")
-			params = this.settings.get("parameters")
+			params = this.settings.get("parameters").split(",")
 			headers = this.settings.get("headers")
 			external_edit = this.settings.get("external_edit")
 			format = this.settings.get("format").split(" ")
 
-			console.dir(format)
+			// if headers
+			console.log("data" + params)
+			console.log("headers" + headers)
+			if(headers && params){
+				$.ajaxSetup({headers: headers, data: params})
+			} else if(headers){
+				$.ajaxSetup({headers: headers})
+			} else if(data){
+				$.ajaxSetup({data: params})
+			}
 
 			var item = {
 				url: url,
@@ -27,14 +36,14 @@
 			}
 
 			if(method === 'GET'){
-				jQuery.get(url, params, headers).done(function(html){
+				jQuery.get(url).done(function(html){
 					console.dir(html)
 					jsonParser(html,format)
 				}).fail(function(error){
 					console.log(error)
 				})
 			} else if(method === 'POST'){
-				$.post(url, params, headers).done(function(html){
+				$.post(url, params).done(function(html){
 					jsonParser(html,format)
 				})
 			} else if(method === 'PUT'){
@@ -81,13 +90,14 @@ function jsonParser(html, format){
 		for (i=0; i<format.length; i++){
 				if(format[i] === "<br>"){
 					html_code += "<br>"
-				} else if(format[i] === " "){
+				} else if(format[i] === "\s"){ // cuz spaces stripped out
 					html_code += " "
 				} else {
 					var item = html[format[i]] // html[0]["name"]
 					html_code += item // return something like "John"
 				}
 		}
+		html_code = html_code.replace("undefined", "")
 		$('#api_data').append("<p>" + html_code + "</p>") // "John j@j.com <br> 16"
 		//$('#results').append("<p>" + html_code.replace("undefined", "") + "</p>") // i feel sorry for people named undefined now
 	} else {
@@ -96,7 +106,7 @@ function jsonParser(html, format){
 			for (i=0; i<format.length; i++){
 				if(format[i] === "<br>"){
 					html_code += "<br>"
-				} else if(format[i] === " "){
+				} else if(format[i] === "\s"){ // cuz spaces stripped out
 					html_code += " "
 				} else {
 					var item = html[x][format[i]] // html[0]["name"]
@@ -105,6 +115,7 @@ function jsonParser(html, format){
 				}
 			}
 		}
+		html_code = html_code.replace("undefined", "")
 		$('#api_data').append("<p>" + html_code + "</p>") // "John j@j.com <br> 16"
 		//$('#results').append("<p>" + html_code + "</p>")
 	}
