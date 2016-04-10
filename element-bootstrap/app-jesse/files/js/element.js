@@ -24,6 +24,18 @@
 			if(method === 'GET'){
 				$.get(item).done(function(html){
 					console.dir(html)
+
+					if html.length == 1 {
+						for (y=0; y<format.length; y++){
+							var item = html[0][format[y]]
+						}
+					} else {
+						for (x=0; x<html.length; x++){
+							for (z=0; z<format.length, z++) {
+								var thing = html[x][format[z]]
+							}
+						}
+					}
 				})
 			} else if(method === 'POST'){
 				$.post(item).done(function(html){
