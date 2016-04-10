@@ -1,0 +1,55 @@
+{
+  "manifest": "1",
+  "version": "1.1.0",
+  "elements": [
+    {
+      "name": "idk",
+      "path": "files",
+      "version": "1.1.0",
+      "settings": {
+        "config": {
+          "autopop": false
+        },
+        "properties": [
+          {
+            "name": "settings",
+            "label": "Settings",
+            "type": "group",
+            "properties": [
+              {
+                "name": "url",
+                "label": "URL",
+                "type": "text",
+                "default": "URL"
+              },
+              {
+                "name": "features",
+                "label": "Features",
+                "type": "int",
+                "default": 3,
+                "step": 1,
+                "min": 1
+              },
+              {
+                "name": "location",
+                "label": "Sign Up Button",
+                "type": "select",
+                "values": [
+                  "Top",
+                  "Bottom"
+                ],
+                "default": "Top"
+              },
+              {
+                "name": "alignment",
+                "label": "Align",
+                "type": "align",
+                "default": "center"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}
