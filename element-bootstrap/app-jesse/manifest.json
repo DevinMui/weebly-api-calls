@@ -41,6 +41,12 @@
                 "default": "Enter header (name: value) and add more with a new line"
               },
               {
+                "name": "format",
+                "label": "Format Your Response Using Hashtags for Name Values",
+                "type": "text",
+                "default": "#user #date \n#post"
+              },
+              {
                 "name": "external_edit",
                 "label": "Allow Client to Edit API Request Parameter",
                 "type": "string",
