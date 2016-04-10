@@ -1,0 +1,63 @@
+{
+  "manifest": "1",
+  "version": "1.0.3",
+  "locale": {
+  	"default": "en-us",
+  	"supported": ["en-us"]
+  },
+  "elements": [
+	{
+	  "path": "files",
+	  "name": "API",
+	  "version": "1.0.3",
+	  "settings": {
+		"config": {
+      "external": {
+        "url": "http://weebly.com",
+        "label": "Check out Weebly."
+      },
+		  "autopop": true
+		},
+		"properties": [
+          {
+            "type": "group",
+            "name": "settings",
+            "label": "Settings",
+            "properties": [
+              {
+                "name": "API",
+                "default": "API",
+                "hidden": false,
+                "type": "string",
+                "label": "Application Programming Interface"
+              },
+              {
+                "name": "URL",
+                "label": "URL",
+                "default": "http://weebly.com",
+                "type": "string"
+              },
+              {
+                "name": "Method",
+                "label": "HTTP Verb",
+                "default": " ",
+                "type": "select",
+                "value": ["GET", "POST", "PATCH", "PUT", "DELETE"]
+              },
+              { "name": "Headers",
+                "label": "Headers",
+                "default": "Enter a new header ('name': 'value') and add more with a new line",
+                "type": "text"
+              },
+              { "name": "Parameters",
+                "label": "Parameters",
+                "default": "Enter a new header ('name': 'value') and add more with a new line",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "manifest": "1",
+  "version": "1.0.3",
+  "elements": [
+    {
+      "name": "idk",
+      "path": "files",
+      "version": "1.0.3",
+      "settings": {
+        "config": {
+          "autopop": false
+        },
+        "properties": [
+          {
+            "name": "settings",
+            "label": "Settings",
+            "type": "group",
+            "properties": [
+              {
+                "name": "url",
+                "label": "URL",
+                "type": "string",
+                "default": "http://weebly.com"
+              },
+              {
+                "name": "method",
+                "label": "HTTP Method (GET, POST, PATCH, PUT, DELETE)",
+                "type": "string",
+                "default": "GET"
+              },
+              {
+                "name": "parameters",
+                "label": "Parameters",
+                "type": "text",
+                "default": "Enter parameters (name: value) and add more with a new line"
+              },
+              {
+                "name": "headers",
+                "label": "Headers",
+                "type": "text",
+                "default": "Enter header (name: value) and add more with a new line"
+              },
+              {
+                "name": "external_edit",
+                "label": "Allow Client to Edit API Request Parameter",
+                "type": "string",
+                "default": "string"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}
