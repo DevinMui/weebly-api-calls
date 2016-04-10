@@ -12,14 +12,10 @@
 		console.log(userInput.split(" "))
 		userReturn=userInput.split(" ")
 
-		for(i=0; i<userInput.length; i++)
-		{
-
-		}
-		/*
+/*
 		for(i=0; i<userInput.length;i++)
 		{
-			if(userInput[i]=== " " )
+			if(userInput[i]=== " ")
 			{
 				userReturn.push(" ");
 			}
@@ -34,11 +30,46 @@
 			
 		}
 */
-
 		console.dir(userReturn);
 		return userReturn;
 	
 	}
+
+window.onload = removeSpecial
+var tweet = "js sucks's's's''s's 3 4O#4302"
+var convertedString = tweet.split('')
+function removeSpecial( )
+{
+	
+	for(i=0;i<convertedString.length; i++)
+	{
+		if(convertedString[i]===" ")
+		{
+			convertedString[i]="%20"
+		}
+		else if(convertedString[i]==="#")
+		{
+			convertedString[i]="%23"
+		}
+		else if(convertedString[i]==="'")
+		{
+			convertedString[i]="%27"
+		}
+	}
+	console.dir(convertedString);
+	addStrings();
+
+}
+
+function addStrings( )
+{
+	var cumpleteString = ""
+	for(i=0; i<convertedString.length;i++)
+	{
+		cumpleteString=cumpleteString+convertedString[i];
+	}
+	console.dir(cumpleteString);
+}
 
 </script>
 <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
