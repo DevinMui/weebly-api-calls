@@ -3,35 +3,38 @@
  * @type {PlatformElement}
  */
 (function(){
-	var url
-	var method
-	var parameters
-	var headers
-	var external_edit
-	var format
+	var url;
+	var method;
+	var params;
+	var headers;
+	var external_edit;
+	var format;
 	var MyElement = PlatformElement.extend({
-		initialize.function(){
+		initialize: function(){
 			url = this.settings.get("url")
 			method = this.settings.get("method")
-			parameters = this.settings.get("parameters")
+			params = this.settings.get("parameters")
 			headers = this.settings.get("headers")
 			external_edit = this.settings.get("external_edit")
-			format = this.settings.get("format")
+			format = this.settings.get("format").split(" ")
+
+			console.dir(format)
 
 			var item = {
 				url: url,
-				data: params,
-				headers: headers
+				/*data: params,
+				headers: headers*/
 			}
 
-			var arr = ["name", " ","email", "<br>","age"]
-
 			if(method === 'GET'){
-				$.get(item).done(function(html){
+				jQuery.get(url, params, headers).done(function(html){
+					console.dir(html)
 					jsonParser(html,format)
+				}).fail(function(error){
+					console.log(error)
 				})
 			} else if(method === 'POST'){
-				$.post(item).done(function(html){
+				$.post(url, params, headers).done(function(html){
 					jsonParser(html,format)
 				})
 			} else if(method === 'PUT'){
@@ -73,6 +76,7 @@ jQuery.each( [ "put", "delete", "patch" ], function( i, method ) {
 });
 
 function jsonParser(html, format){
+	console.log(format)
 	if(html.length === undefined){
 		for (i=0; i<format.length; i++){
 				if(format[i] === "<br>"){

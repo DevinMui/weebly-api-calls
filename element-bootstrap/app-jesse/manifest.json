@@ -8,7 +8,7 @@
       "version": "1.0.3",
       "settings": {
         "config": {
-          "autopop": false
+          "autopop": true
         },
         "properties": [
           {
@@ -20,7 +20,7 @@
                 "name": "url",
                 "label": "URL",
                 "type": "string",
-                "default": "http://weebly.com"
+                "default": " "
               },
               {
                 "name": "method",
@@ -32,13 +32,13 @@
                 "name": "parameters",
                 "label": "Parameters",
                 "type": "text",
-                "default": "Enter parameters (name: value) and add more with a new line"
+                "default": " "
               },
               {
                 "name": "headers",
                 "label": "Headers",
                 "type": "text",
-                "default": "Enter header (name: value) and add more with a new line"
+                "default": " "
               },
               {
                 "name": "format",
