@@ -3,23 +3,40 @@
 	things are cool
 </p>
 <script type="text/javascript">
-	var userInput="fill";
-	window.onload = yeezy 
-	function yeezy() {
-		for(int i=0; i<userInput.length;i++)
+	window.onload = yeezy
+	function yeezy( ) 
+	{
+		var userInput="CUrrent Year <br> i like naggers";
+		var userReturn = [];
+		console.log(userInput.length);
+		console.log(userInput.split(" "))
+		userReturn=userInput.split(" ")
+
+		
+		/*
+		for(i=0; i<userInput.length;i++)
 		{
-			//break = switch user -> date -> post
-			if(userInput===" " || userInput==="\n" || userInput==="<br>")
+			if(userInput[i]=== " " )
 			{
-
+				userReturn.push(" ");
 			}
-			else if(userInput==="#")
+			else if(userInput[i]=== "\n" || userInput[i]=== "<br>" ||userInput[i]=== "<br/>")
 			{
-
+				userReturn.push("<br>");
+			}
+			else
+			{
+				userReturn.push(userInput[i]);
 			}
 			
 		}
+*/
+
+		console.dir(userReturn);
+		return userReturn;
+	
 	}
+
 </script>
 <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
 <script src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
