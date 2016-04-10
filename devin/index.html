@@ -39,6 +39,8 @@
 		var headers = {}
 
 		$('#submit').click(function(){
+			var format = ["name", " ","email", "<br>","bio"] // iterate through
+
 			var url = $('#url').val()
 			var method = $('#method').val()
 			var item = {
@@ -49,8 +51,41 @@
 			if(method === 'GET'){
 				$.get(item).done(function(html){
 					console.dir(html)
-					$('#results').empty()
-					$('#results').append(html)
+					// html = {}
+					// format has to be string
+					if(html.length === undefined){
+						for (i=0; i<format.length; i++){
+								if(format[i] === "<br>"){
+									console.log("BREAK")
+									html_code += "<br>"
+								} else if(format[i] === " "){
+									console.log("SPACE")
+									html_code += " "
+								} else {
+									var item = html[format[i]] // html[0]["name"]
+									html_code += item // return something like "John"
+								}
+								console.log(html_code)
+						}
+						$('#results').append("<p>" + html_code.replace("undefined", "") + "</p>") // i feel sorry for people named undefined now
+					} else {
+						for(x=0;x<html.length;x++){
+							var html_code
+							for (i=0; i<format.length; i++){
+								if(format[i] === "<br>"){
+									html_code += "<br>"
+								} else if(format[i] === " "){
+									html_code += " "
+								} else {
+									var item = html[x][format[i]] // html[0]["name"]
+									console.log(item)
+									html_code += item // return something like "John"
+								}
+							}
+						}
+						//$('#api_data').append("<p>" + html_code + "</p>") // "John j@j.com <br> 16"
+						$('#results').append("<p>" + html_code + "</p>")
+					}
 				})
 			} else if(method === 'POST'){
 				$.post(item).done(function(html){

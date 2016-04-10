@@ -8,6 +8,7 @@
 	var parameters
 	var headers
 	var external_edit
+	var format
 	var MyElement = PlatformElement.extend({
 		initialize.function(){
 			url = this.settings.get("url")
@@ -15,43 +16,35 @@
 			parameters = this.settings.get("parameters")
 			headers = this.settings.get("headers")
 			external_edit = this.settings.get("external_edit")
+			format = this.settings.get("format")
 
 			var item = {
 				url: url,
 				data: params,
 				headers: headers
 			}
+
+			var arr = ["name", " ","email", "<br>","age"]
+
 			if(method === 'GET'){
 				$.get(item).done(function(html){
-					console.dir(html)
-
-					if html.length == 1 {
-						for (y=0; y<format.length; y++){
-							var item = html[0][format[y]]
-						}
-					} else {
-						for (x=0; x<html.length; x++){
-							for (z=0; z<format.length, z++) {
-								var thing = html[x][format[z]]
-							}
-						}
-					}
+					jsonParser(html,format)
 				})
 			} else if(method === 'POST'){
 				$.post(item).done(function(html){
-					console.dir(html)
+					jsonParser(html,format)
 				})
 			} else if(method === 'PUT'){
 				$.put(item).done(function(html){
-					console.dir(html)
+					jsonParser(html,format)
 				})
 			} else if(method === 'DELETE'){
 				$.delete(item).done(function(html){
-					console.dir(html)
+					jsonParser(html,format)
 				})
 			} else if(method === 'PATCH'){
 				$.patch(item).done(function(html){
-					console.dir(html)
+					jsonParser(html,format)
 				})
 			}
 		}
@@ -78,3 +71,37 @@ jQuery.each( [ "put", "delete", "patch" ], function( i, method ) {
     });
   };
 });
+
+function jsonParser(html, format){
+	if(html.length === undefined){
+		for (i=0; i<format.length; i++){
+				if(format[i] === "<br>"){
+					html_code += "<br>"
+				} else if(format[i] === " "){
+					html_code += " "
+				} else {
+					var item = html[format[i]] // html[0]["name"]
+					html_code += item // return something like "John"
+				}
+		}
+		$('#api_data').append("<p>" + html_code + "</p>") // "John j@j.com <br> 16"
+		//$('#results').append("<p>" + html_code.replace("undefined", "") + "</p>") // i feel sorry for people named undefined now
+	} else {
+		for(x=0;x<html.length;x++){
+			var html_code
+			for (i=0; i<format.length; i++){
+				if(format[i] === "<br>"){
+					html_code += "<br>"
+				} else if(format[i] === " "){
+					html_code += " "
+				} else {
+					var item = html[x][format[i]] // html[0]["name"]
+					console.log(item)
+					html_code += item // return something like "John"
+				}
+			}
+		}
+		$('#api_data').append("<p>" + html_code + "</p>") // "John j@j.com <br> 16"
+		//$('#results').append("<p>" + html_code + "</p>")
+	}
+}
