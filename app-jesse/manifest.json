@@ -19,7 +19,7 @@
               {
                 "name": "url",
                 "label": "URL",
-                "type": "text",
+                "type": "string",
                 "default": "URL"
               },
               {
