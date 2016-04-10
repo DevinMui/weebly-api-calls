@@ -1,4 +1,4 @@
-var twitter = require('twitter')
+var Twitter = require('twitter')
 var express = require('express')
 var app = express()
 
