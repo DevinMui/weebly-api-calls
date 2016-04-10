@@ -18,14 +18,13 @@
 			external_edit = this.settings.get("external_edit")
 			format = this.settings.get("format").split(" ")
 			//if(url !=== " "){
-				debugger
 				if(method === 'GET'){
 					console.log('GET')
 					jQuery.get(url).done(function(html){
 						console.dir(html)
-						var html_code=""
+						var html_code="",i,x
 						$('#api_data').empty()
-						if(html.length === undefined){
+						if(typeof(html) === "object"){
 							for (i=0; i<format.length; i++){
 									if(format[i] === "<br>"){
 										html_code += "<br>"
@@ -35,14 +34,14 @@
 									}
 							}
 							$('#api_data').append("<p>" + html_code + "</p>") // "John j@j.com <br> 16"
-						} else {
+						} else if (Array.isArray(html)) {
 							for(x=0;x<html.length;x++){
 								for (i=0; i<format.length; i++){
 									if(format[i] === "<br>"){
 										html_code += "<br>"
 									} else {
 										var item = html[x][format[i]] // html[0]["name"]
-										console.log(item)
+										console.log(x,i,item)
 										html_code += item + " "// return something like "John"
 									}
 								}
